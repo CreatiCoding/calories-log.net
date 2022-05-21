@@ -187,3 +187,5 @@ yarn-error.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+calories-log.net.tar.gz
