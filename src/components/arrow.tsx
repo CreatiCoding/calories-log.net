@@ -11,6 +11,7 @@ const Arrow = {
         onClick={onClick}
         css={css`
           font-size: 2rem;
+          cursor: pointer;
         `}
       >
         <p>👈</p>
@@ -23,6 +24,7 @@ const Arrow = {
         onClick={onClick}
         css={css`
           font-size: 2rem;
+          cursor: pointer;
         `}
       >
         <p>👉</p>
