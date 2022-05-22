@@ -88,6 +88,7 @@ export function Calendar(props: CalendarProps) {
 
       <div
         css={css`
+          margin-top: 20px;
           display: grid;
           grid-gap: 0;
           gap: 10px 20px;
