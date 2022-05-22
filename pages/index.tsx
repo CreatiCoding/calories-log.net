@@ -11,11 +11,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   ctx.res.statusCode = 302;
   ctx.res.end();
 
-  return {
-    redirect: {
-      permanent: false,
-      destination: destination,
-    },
-    props: {},
-  };
+  return { props: {} };
 };
