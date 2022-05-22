@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import Cookies from "js-cookie";
+import * as localStorage from "local-storage";
 import { useState } from "react";
 import { getDateLengthOfMonth, MM } from "../computed/date";
 import Arrow from "./arrow";
@@ -10,19 +10,20 @@ interface CalendarProps {
 }
 
 function updateCalories(calories: any) {
-  return Cookies.set("calories", JSON.stringify(calories), { expires: 99999 });
+  return localStorage.set("calories", JSON.stringify(calories));
 }
 
-function fetchCalories() {
-  if (Cookies.get("calories")) {
-    return JSON.parse(Cookies.get("calories") as string);
+function fetchCalories(): Record<string, number> {
+  if (localStorage.get("calories")) {
+    const json = decodeURIComponent(localStorage.get("calories") as string);
+    return JSON.parse(json);
   }
 
-  return null;
+  return {};
 }
 
 function useCalories() {
-  const [calories, setCalories] = useState<Record<string, any>>(
+  const [calories, setCalories] = useState<Record<string, number>>(
     fetchCalories()
   );
 
@@ -35,6 +36,7 @@ function useCalories() {
 
     setCalories(calories);
     updateCalories(calories);
+
     location.reload();
   };
 
@@ -44,8 +46,8 @@ function useCalories() {
 export function Calendar(props: CalendarProps) {
   const [year, setYear] = useState(props.year);
   const [month, setMonth] = useState(props.month);
-  const date = getDateLengthOfMonth(year, month);
   const [calories, addCalories] = useCalories();
+  const date = getDateLengthOfMonth(year, month);
 
   if (isNaN(date.monthLength) || month < 1 || month > 12) {
     return (
@@ -66,6 +68,10 @@ export function Calendar(props: CalendarProps) {
       </div>
     );
   }
+
+  const list = new Array(date.start.getDay() + date.monthLength)
+    .fill(0)
+    .map((_, i) => i - date.start.getDay() + 1);
 
   return (
     <div>
@@ -96,9 +102,11 @@ export function Calendar(props: CalendarProps) {
             setMonth(next);
           }}
         />
+
         <h3>
           {year} / {MM(month)}
         </h3>
+
         <Arrow.Right
           onClick={() => {
             const next = month + 1;
@@ -132,50 +140,47 @@ export function Calendar(props: CalendarProps) {
           grid-template-rows: repeat(6, 50px);
         `}
       >
-        {new Array(date.start.getDay() + date.monthLength)
-          .fill(0)
-          .map((_, i) => i - date.start.getDay() + 1)
-          .map((day, i) => (
-            <div
-              key={i}
-              css={css`
-                padding: 0 5px;
-                border: 1px solid #c8c8c8;
-                text-align: center;
-              `}
-              onClick={() => {
-                const calory = prompt(`추가할 칼로리를 입력하세요.`);
+        {list.map((day, i) => (
+          <div
+            key={i}
+            css={css`
+              padding: 0 5px;
+              border: 1px solid #c8c8c8;
+              text-align: center;
+            `}
+            onClick={() => {
+              const calory = prompt(`추가할 칼로리를 입력하세요.`);
 
-                if (calory) {
-                  addCalories(`${year}-${MM(month)}-${day}`, Number(calory));
-                }
-              }}
-            >
-              {i >= date.start.getDay() && (
-                <p
-                  css={css`
-                    font-size: 12px;
-                  `}
-                >
-                  {day}
-                </p>
-              )}
+              if (calory) {
+                addCalories(`${year}-${MM(month)}-${day}`, Number(calory));
+              }
+            }}
+          >
+            {i >= date.start.getDay() && (
+              <p
+                css={css`
+                  font-size: 12px;
+                `}
+              >
+                {day}
+              </p>
+            )}
 
-              {calories?.[`${year}-${MM(month)}-${day}`] && (
-                <p
-                  css={css`
-                    background-color: purple;
-                    color: white;
-                    font-size: 14px;
-                    padding: 5px 0;
-                    font-weight: bold;
-                  `}
-                >
-                  {calories?.[`${year}-${MM(month)}-${day}`]}
-                </p>
-              )}
-            </div>
-          ))}
+            {calories?.[`${year}-${MM(month)}-${day}`] && (
+              <p
+                css={css`
+                  background-color: purple;
+                  color: white;
+                  font-size: 14px;
+                  padding: 5px 0;
+                  font-weight: bold;
+                `}
+              >
+                {calories?.[`${year}-${MM(month)}-${day}`]}
+              </p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

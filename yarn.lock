@@ -1421,13 +1421,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/js-cookie@npm:^3":
-  version: 3.0.2
-  resolution: "@types/js-cookie@npm:3.0.2"
-  checksum: 7ab964288dd26373e134ed0bcde4a7dbea7e6f5de1805e2d1e48eac847e89a0e7f5fdc9164c37931680ec97c6e6e5a73e3e4039e0d08527c2e21badd7bee62d1
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:*":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -1448,6 +1441,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e009a2bfb50e90ca9b7c6e8f648f8464067271fd99116f881073fa6fa76dc8d0133181dd65e6614d5fb1220d671d67b0124aef7d97dc02d7e342ab143a47779d
+  languageName: node
+  linkType: hard
+
+"@types/local-storage@npm:^2":
+  version: 2.0.0
+  resolution: "@types/local-storage@npm:2.0.0"
+  dependencies:
+    local-storage: "*"
+  checksum: 9a8fd94cea37ff15cb4678a0984e49755039593b1605ae76d57153abbf3cfbeda3b9986561863d97b7c7c3749f781344b23f1054c946190519f5df6d3a33d871
   languageName: node
   linkType: hard
 
@@ -2118,7 +2120,7 @@ __metadata:
     "@types/body-parser": ^1.19.2
     "@types/eslint": ^8.4.2
     "@types/express": ^4.17.13
-    "@types/js-cookie": ^3
+    "@types/local-storage": ^2
     "@types/node": ^17.0.35
     "@types/react": ^18.0.9
     "@types/react-dom": 18.0.4
@@ -2130,7 +2132,7 @@ __metadata:
     eslint-plugin-import: ^2.26.0
     express: ^4.18.1
     jimp: ^0.16.1
-    js-cookie: ^3.0.1
+    local-storage: ^2.0.0
     next: ^12.1.6
     nodemon: ^2.0.16
     react: ^18.1.0
@@ -4245,13 +4247,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-cookie@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "js-cookie@npm:3.0.1"
-  checksum: bb48de67e2a6bd1ae3dfd6b2d5a167c33dd0c5a37e909206161eb0358c98f17cb55acd55827a58e9eea3630d89444e7479f7938ef4420dda443218b8c434a4c3
-  languageName: node
-  linkType: hard
-
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -4401,6 +4396,13 @@ __metadata:
     xhr: ^2.0.1
     xtend: ^4.0.0
   checksum: 688d932fb0dc4c9333747736ccd926261f0b91734b7bdb6ff24f8659ef068a0f0b2278084b208851afac0beec79af7bd6664fe2ed5b6c5e1db88755fc25f785e
+  languageName: node
+  linkType: hard
+
+"local-storage@npm:*, local-storage@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "local-storage@npm:2.0.0"
+  checksum: 921f381cafc4c0cac263a87e9e11093adf0bfb13b3520107bb5065bbccf5e7d22eea81148a40bc10d9f44aba8a5afe0157183205714d0221e02e36cb8afaa70b
   languageName: node
   linkType: hard
 
