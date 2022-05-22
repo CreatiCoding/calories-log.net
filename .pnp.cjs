@@ -61,6 +61,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/body-parser", "npm:1.19.2"],\
             ["@types/eslint", "npm:8.4.2"],\
             ["@types/express", "npm:4.17.13"],\
+            ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/node", "npm:17.0.35"],\
             ["@types/react", "npm:18.0.9"],\
             ["@types/react-dom", "npm:18.0.4"],\
@@ -72,6 +73,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-import", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:2.26.0"],\
             ["express", "npm:4.18.1"],\
             ["jimp", "npm:0.16.1"],\
+            ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:12.1.6"],\
             ["nodemon", "npm:2.0.16"],\
             ["react", "npm:18.1.0"],\
@@ -2352,6 +2354,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/js-cookie", [\
+        ["npm:3.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-js-cookie-npm-3.0.2-0fde2a4d71-7ab964288d.zip/node_modules/@types/js-cookie/",\
+          "packageDependencies": [\
+            ["@types/js-cookie", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/json-schema", [\
         ["npm:7.0.11", {\
           "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.11-79462ae5ca-527bddfe62.zip/node_modules/@types/json-schema/",\
@@ -3176,6 +3187,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/body-parser", "npm:1.19.2"],\
             ["@types/eslint", "npm:8.4.2"],\
             ["@types/express", "npm:4.17.13"],\
+            ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/node", "npm:17.0.35"],\
             ["@types/react", "npm:18.0.9"],\
             ["@types/react-dom", "npm:18.0.4"],\
@@ -3187,6 +3199,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-import", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:2.26.0"],\
             ["express", "npm:4.18.1"],\
             ["jimp", "npm:0.16.1"],\
+            ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:12.1.6"],\
             ["nodemon", "npm:2.0.16"],\
             ["react", "npm:18.1.0"],\
@@ -5779,6 +5792,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/jpeg-js-npm-0.4.2-cd096142cc-def900757c.zip/node_modules/jpeg-js/",\
           "packageDependencies": [\
             ["jpeg-js", "npm:0.4.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["js-cookie", [\
+        ["npm:3.0.1", {\
+          "packageLocation": "./.yarn/cache/js-cookie-npm-3.0.1-04c7177de1-bb48de67e2.zip/node_modules/js-cookie/",\
+          "packageDependencies": [\
+            ["js-cookie", "npm:3.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\

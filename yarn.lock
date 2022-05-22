@@ -1421,6 +1421,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-cookie@npm:^3":
+  version: 3.0.2
+  resolution: "@types/js-cookie@npm:3.0.2"
+  checksum: 7ab964288dd26373e134ed0bcde4a7dbea7e6f5de1805e2d1e48eac847e89a0e7f5fdc9164c37931680ec97c6e6e5a73e3e4039e0d08527c2e21badd7bee62d1
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -2111,6 +2118,7 @@ __metadata:
     "@types/body-parser": ^1.19.2
     "@types/eslint": ^8.4.2
     "@types/express": ^4.17.13
+    "@types/js-cookie": ^3
     "@types/node": ^17.0.35
     "@types/react": ^18.0.9
     "@types/react-dom": 18.0.4
@@ -2122,6 +2130,7 @@ __metadata:
     eslint-plugin-import: ^2.26.0
     express: ^4.18.1
     jimp: ^0.16.1
+    js-cookie: ^3.0.1
     next: ^12.1.6
     nodemon: ^2.0.16
     react: ^18.1.0
@@ -4233,6 +4242,13 @@ __metadata:
   version: 0.4.2
   resolution: "jpeg-js@npm:0.4.2"
   checksum: def900757c395e6376446aef5c13ed122cae1ab15308e84784d260c8d3c14d30c2092eaf32a4f57528d6e1f96a6b240a801e92122f00c9f3bb5d5c4d38df5bc0
+  languageName: node
+  linkType: hard
+
+"js-cookie@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "js-cookie@npm:3.0.1"
+  checksum: bb48de67e2a6bd1ae3dfd6b2d5a167c33dd0c5a37e909206161eb0358c98f17cb55acd55827a58e9eea3630d89444e7479f7938ef4420dda443218b8c434a4c3
   languageName: node
   linkType: hard
 
