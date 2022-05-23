@@ -91,7 +91,7 @@ export function Calendar(props: CalendarProps) {
   return (
     <div>
       <div>
-        <h3>🎉 내가 태운 칼로리 👇</h3>
+        <h3>🎉 내가 태운 칼로리👇</h3>
         <h4>
           총 칼로리:{" "}
           <span
@@ -101,8 +101,8 @@ export function Calendar(props: CalendarProps) {
             `}
           >
             {sum}
-          </span>
-          , 일일 평균 칼로리:{" "}
+          </span>{" "}
+          일일 평균 칼로리:{" "}
           <span
             css={css`
               font-size: 1.4rem;
