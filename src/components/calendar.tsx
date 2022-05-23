@@ -109,7 +109,7 @@ export function Calendar(props: CalendarProps) {
               color: red;
             `}
           >
-            {(sum / length).toFixed(2)}
+            {isNaN(sum / length) ? 0 : (sum / length).toFixed(2)}
           </span>
         </h4>
       </div>
