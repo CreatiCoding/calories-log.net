@@ -13,6 +13,9 @@ export default function HomePage() {
       css={css`
         ${pageStyle}
         text-align: center;
+        div > h1 {
+          padding: 2rem 0 1rem 0;
+        }
       `}
       header={Header}
     >
