@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <Page
-      title={"내 칼로리"}
+      title={"내가 태운 칼로리"}
       css={css`
         ${pageStyle}
         text-align: center;

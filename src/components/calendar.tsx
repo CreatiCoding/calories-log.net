@@ -3,6 +3,7 @@ import * as localStorage from "local-storage";
 import { useEffect, useState } from "react";
 import { getDateLengthOfMonth, MM } from "../computed/date";
 import Arrow from "./arrow";
+import Label from "./label";
 
 interface CalendarProps {
   year: number;
@@ -71,7 +72,6 @@ export function Calendar(props: CalendarProps) {
   if (isNaN(date.monthLength) || month < 1 || month > 12) {
     return (
       <div>
-        <div>Calendar</div>
         <p
           css={css`
             color: red;
@@ -81,8 +81,6 @@ export function Calendar(props: CalendarProps) {
           <br />
           Invalid month: {month}
           <br />
-          {JSON.stringify(date, null, 2)}
-          <br />
         </p>
       </div>
     );
@@ -91,27 +89,11 @@ export function Calendar(props: CalendarProps) {
   return (
     <div>
       <div>
-        <h3>🎉 내가 태운 칼로리👇</h3>
-        <h4>
-          총 칼로리:{" "}
-          <span
-            css={css`
-              font-size: 1.4rem;
-              color: red;
-            `}
-          >
-            {sum}
-          </span>{" "}
-          일일 평균 칼로리:{" "}
-          <span
-            css={css`
-              font-size: 1.4rem;
-              color: red;
-            `}
-          >
-            {isNaN(sum / length) ? 0 : (sum / length).toFixed(2)}
-          </span>
-        </h4>
+        <Label name={"total"} value={sum} />{" "}
+        <Label
+          name={"avg"}
+          value={isNaN(sum / length) ? 0 : (sum / length).toFixed(2)}
+        />
       </div>
       <div
         css={css`
