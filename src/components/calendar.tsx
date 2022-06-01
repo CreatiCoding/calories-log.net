@@ -1,73 +1,34 @@
 import { css } from "@emotion/react";
-import * as localStorage from "local-storage";
-import { useEffect, useState } from "react";
-import { getDateLengthOfMonth, MM } from "../computed/date";
+import { Dispatch, SetStateAction } from "react";
+import { getDateLengthOfMonth, getOneMonthDays, MM } from "../computed/date";
+import { Calories } from "../hooks/calories";
 import Arrow from "./arrow";
-import Label from "./label";
 
 interface CalendarProps {
-  year: number;
-  month: number;
-}
-
-function updateCalories(calories: any) {
-  return localStorage.set("calories", JSON.stringify(calories));
-}
-
-function fetchCalories(): Record<string, number> {
-  if (localStorage.get("calories")) {
-    const json = decodeURIComponent(localStorage.get("calories") as string);
-    return JSON.parse(json);
-  }
-
-  return {};
-}
-
-function useCalories() {
-  const [calories, setCalories] = useState<Record<string, number>>(
-    fetchCalories()
-  );
-
-  const addCalories = (date: string, calory: number) => {
-    if (calories[date]) {
-      calories[date] += calory;
-    } else {
-      calories[date] = calory;
-    }
-
-    setCalories(calories);
-    updateCalories(calories);
-
-    location.reload();
-  };
-
-  return [calories, addCalories] as const;
+  year: number | undefined;
+  month: number | undefined;
+  calories: Calories;
+  addCalories: ({
+    year,
+    month,
+    day,
+  }: {
+    year: number;
+    month: number;
+    day: number;
+  }) => void;
+  setYear: Dispatch<SetStateAction<number | undefined>>;
+  setMonth: Dispatch<SetStateAction<number>>;
 }
 
 export function Calendar(props: CalendarProps) {
-  const [list, setList] = useState<number[]>([]);
-  const [year, setYear] = useState(props.year);
-  const [month, setMonth] = useState(props.month);
-  const [calories, addCalories] = useCalories();
-  const [sum, setSum] = useState(0);
-  const [length, setLength] = useState(0);
+  const { calories, addCalories, year, month, setYear, setMonth } = props;
+  if (year == null || month == null) {
+    return null;
+  }
+
   const date = getDateLengthOfMonth(year, month);
-
-  useEffect(() => {
-    const list = new Array(date.start.getDay() + date.monthLength)
-      .fill(0)
-      .map((_, i) => i - date.start.getDay() + 1);
-
-    setList(list);
-
-    // FIXME: 고쳐주세요, date를 안쪽으로 밀던지 해야함
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [year, month]);
-
-  useEffect(() => {
-    setSum(Object.values(calories).reduce((acc, cur) => acc + cur, 0));
-    setLength(Object.values(calories).filter((e) => e !== 0).length);
-  }, [calories]);
+  const list = getOneMonthDays(date);
 
   if (isNaN(date.monthLength) || month < 1 || month > 12) {
     return (
@@ -88,13 +49,6 @@ export function Calendar(props: CalendarProps) {
 
   return (
     <div>
-      <div>
-        <Label name={"total"} value={sum} />{" "}
-        <Label
-          name={"avg"}
-          value={isNaN(sum / length) ? 0 : (sum / length).toFixed(2)}
-        />
-      </div>
       <div
         css={css`
           display: grid;
@@ -170,13 +124,7 @@ export function Calendar(props: CalendarProps) {
                 border: 1px solid #c8c8c8;
                 text-align: center;
               `}
-              onClick={() => {
-                const calory = prompt(`추가할 칼로리를 입력하세요.`);
-
-                if (calory) {
-                  addCalories(`${year}-${MM(month)}-${day}`, Number(calory));
-                }
-              }}
+              onClick={() => addCalories({ year, month, day })}
             >
               {i >= date.start.getDay() && (
                 <p
@@ -187,7 +135,6 @@ export function Calendar(props: CalendarProps) {
                   {day}
                 </p>
               )}
-
               {calories?.[`${year}-${MM(month)}-${day}`] ? (
                 <p
                   css={css`
@@ -201,7 +148,7 @@ export function Calendar(props: CalendarProps) {
                   {calories?.[`${year}-${MM(month)}-${day}`]}
                 </p>
               ) : (
-                <p></p>
+                ""
               )}
             </div>
           ))}

@@ -1,12 +1,13 @@
 import { css } from "@emotion/react";
 
 interface LabelProps {
+  className?: string;
   name: string;
-  value: string | number;
+  value?: string | number;
 }
-export default function Label({ name, value }: LabelProps) {
+export default function Label({ className, name, value }: LabelProps) {
   return (
-    <>
+    <div className={className}>
       <span
         css={css`
           font-weight: bold;
@@ -20,6 +21,7 @@ export default function Label({ name, value }: LabelProps) {
           width: 4px;
         `}
       />
+
       <span
         css={css`
           font-weight: bold;
@@ -27,8 +29,8 @@ export default function Label({ name, value }: LabelProps) {
           color: red;
         `}
       >
-        {value}
+        {value ?? ""}
       </span>
-    </>
+    </div>
   );
 }
