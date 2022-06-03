@@ -10,22 +10,11 @@ import { pageStyle } from "../styles/page";
 
 export default function HomePage() {
   const [now, setNow] = useState<Date | null>(null);
-  const [year, setYear] = useState(now?.getFullYear());
-  const [month, setMonth] = useState(now == null ? 0 : now.getMonth() + 1);
   const [calories, addCalories] = useCalories();
   const [accSum, setAccSum] = useState(0);
   const [accLength, setAccLength] = useState(0);
   const [monthlySum, setMonthlySum] = useState(0);
   const [monthlyLength, setMonthlyLength] = useState(0);
-
-  useEffect(() => {
-    if (now == null) {
-      return;
-    }
-
-    setYear(now.getFullYear());
-    setMonth(now.getMonth() + 1);
-  }, [now]);
 
   useEffect(() => {
     setAccSum(Object.values(calories).reduce((acc, cur) => acc + cur, 0));
@@ -34,16 +23,16 @@ export default function HomePage() {
     if (now != null) {
       setMonthlySum(
         Object.entries(calories)
-          .filter(([e]) => e.split("-")[1] === MM(month))
+          .filter(([e]) => e.split("-")[1] === MM(now.getMonth() + 1))
           .reduce((acc, [_, cur]) => acc + cur, 0)
       );
       setMonthlyLength(
         Object.entries(calories)
-          .filter(([e]) => e.split("-")[1] === MM(month))
+          .filter(([e]) => e.split("-")[1] === MM(now.getMonth() + 1))
           .filter(([_, e]) => e !== 0).length
       );
     }
-  }, [calories, now, month]);
+  }, [calories, now]);
 
   useEffect(() => {
     setNow(new Date());
@@ -96,25 +85,29 @@ export default function HomePage() {
         />
       </div>
       <Calendar
-        setYear={setYear}
-        setMonth={setMonth}
-        year={year}
-        month={month}
-        calories={calories}
-        addCalories={({
-          year,
-          month,
-          day,
-        }: {
-          year: number;
-          month: number;
-          day: number;
-        }) => {
+        current={{
+          year: now.getFullYear(),
+          month: now.getMonth() + 1,
+          date: now.getDate(),
+        }}
+        mode={"monthly"}
+        today={{
+          year: now.getFullYear(),
+          month: now.getMonth() + 1,
+          date: now.getDate(),
+        }}
+        values={Object.entries(calories)
+          .filter((x) => x[1] !== 0)
+          .reduce((a, x) => ({ ...a, [x[0]]: `${x[1]}` }), {})}
+        onClickDate={({ year, month, date }) => {
           const calory = prompt(`추가할 칼로리를 입력하세요.`);
 
           if (calory) {
-            addCalories(`${year}-${MM(month)}-${day}`, Number(calory));
+            addCalories(`${year}-${MM(month)}-${date}`, Number(calory));
           }
+        }}
+        onChangeCurrent={(_, next) => {
+          setNow(new Date(next.year, next.month - 1, next.date));
         }}
       />
     </Page>

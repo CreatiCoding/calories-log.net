@@ -1,51 +1,28 @@
 import { css } from "@emotion/react";
-import { Dispatch, SetStateAction } from "react";
 import { getDateLengthOfMonth, getOneMonthDays, MM } from "../computed/date";
-import { Calories } from "../hooks/calories";
 import Arrow from "./arrow";
 
+type CalendarMode = "monthly";
+interface CalendarDate {
+  year: number;
+  month: number;
+  date?: number;
+}
+
 interface CalendarProps {
-  year: number | undefined;
-  month: number | undefined;
-  calories: Calories;
-  addCalories: ({
-    year,
-    month,
-    day,
-  }: {
-    year: number;
-    month: number;
-    day: number;
-  }) => void;
-  setYear: Dispatch<SetStateAction<number | undefined>>;
-  setMonth: Dispatch<SetStateAction<number>>;
+  mode: CalendarMode;
+  today: CalendarDate;
+  current: CalendarDate;
+  values: Record<string, string>;
+  onClickDate: (date: CalendarDate) => void;
+  onChangeCurrent: (current: CalendarDate, next: CalendarDate) => void;
 }
 
 export function Calendar(props: CalendarProps) {
-  const { calories, addCalories, year, month, setYear, setMonth } = props;
-  if (year == null || month == null) {
-    return null;
-  }
-
+  const { current, values } = props;
+  const { year, month } = current;
   const date = getDateLengthOfMonth(year, month);
   const list = getOneMonthDays(date);
-
-  if (isNaN(date.monthLength) || month < 1 || month > 12) {
-    return (
-      <div>
-        <p
-          css={css`
-            color: red;
-          `}
-        >
-          Invalid year: {year}
-          <br />
-          Invalid month: {month}
-          <br />
-        </p>
-      </div>
-    );
-  }
 
   return (
     <div>
@@ -60,21 +37,10 @@ export function Calendar(props: CalendarProps) {
       >
         <Arrow.Left
           onClick={() => {
-            const next = month - 1;
-
-            if (next > 12) {
-              setYear(year + 1);
-              setMonth(next - 12);
-              return;
-            }
-
-            if (next < 1) {
-              setYear(year - 1);
-              setMonth(next + 12);
-              return;
-            }
-
-            setMonth(next);
+            props.onChangeCurrent(props.current, {
+              ...current,
+              month: current.month - 1,
+            });
           }}
         />
 
@@ -84,21 +50,10 @@ export function Calendar(props: CalendarProps) {
 
         <Arrow.Right
           onClick={() => {
-            const next = month + 1;
-
-            if (next > 12) {
-              setYear(year + 1);
-              setMonth(next - 12);
-              return;
-            }
-
-            if (next < 1) {
-              setYear(year - 1);
-              setMonth(next + 12);
-              return;
-            }
-
-            setMonth(next);
+            props.onChangeCurrent(props.current, {
+              ...current,
+              month: current.month + 1,
+            });
           }}
         />
       </div>
@@ -124,7 +79,7 @@ export function Calendar(props: CalendarProps) {
                 border: 1px solid #c8c8c8;
                 text-align: center;
               `}
-              onClick={() => addCalories({ year, month, day })}
+              onClick={() => props.onClickDate({ year, month, date: day })}
             >
               {i >= date.start.getDay() && (
                 <p
@@ -135,7 +90,7 @@ export function Calendar(props: CalendarProps) {
                   {day}
                 </p>
               )}
-              {calories?.[`${year}-${MM(month)}-${day}`] ? (
+              {values?.[`${year}-${MM(month)}-${day}`] ? (
                 <p
                   css={css`
                     background-color: purple;
@@ -145,7 +100,7 @@ export function Calendar(props: CalendarProps) {
                     font-weight: bold;
                   `}
                 >
-                  {calories?.[`${year}-${MM(month)}-${day}`]}
+                  {values?.[`${year}-${MM(month)}-${day}`]}
                 </p>
               ) : (
                 ""
