@@ -19,7 +19,10 @@ module.exports = {
             id: null,
           });
         }
-        throw e;
+
+        return res.status(500).json({
+          message: e.message,
+        });
       }
     });
 
@@ -41,7 +44,10 @@ module.exports = {
             data: null,
           });
         }
-        throw e;
+
+        return res.status(500).json({
+          message: e.message,
+        });
       }
     });
   },
