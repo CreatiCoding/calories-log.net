@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=dev SERVICE_ENV=dev yarn divops-next-start",
+    "dev": "NODE_ENV=dev SERVICE_ENV=dev next dev",
     "build": "NODE_ENV=production && next build",
-    "start": "SERVICE_ENV=production yarn divops-next-start",
+    "start": "SERVICE_ENV=production next start",
     "lint": "next lint"
   },
   "dependencies": {
