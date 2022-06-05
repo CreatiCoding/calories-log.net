@@ -1,0 +1,1 @@
+export const KAKAO_APP_KEY_JAVASCRIPT = "2f69b6a46603c92631eb5c6d5cfd4efd";

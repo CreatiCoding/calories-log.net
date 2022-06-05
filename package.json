@@ -6,8 +6,7 @@
     "dev": "NODE_ENV=dev SERVICE_ENV=dev yarn divops-next-start",
     "build": "NODE_ENV=production && next build",
     "start": "SERVICE_ENV=production yarn divops-next-start",
-    "lint": "next lint",
-    "deploy": "cd terraform/ssr && terraform apply"
+    "lint": "next lint"
   },
   "dependencies": {
     "@babel/core": "^7.18.0",
