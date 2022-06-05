@@ -32,13 +32,18 @@ function Dialog({
           align-items: center;
           align-content: space-evenly;
           text-align: center;
+          justify-items: center;
         `}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
         {keywords.map((keyword) => (
-          <p
+          <button
+            css={css`
+              width: 200px;
+              margin: 0 auto;
+            `}
             key={keyword}
             onClick={(e) => {
               e.preventDefault();
@@ -48,7 +53,7 @@ function Dialog({
             }}
           >
             {keyword}
-          </p>
+          </button>
         ))}
       </div>
     </div>
@@ -88,7 +93,7 @@ export function useDialog() {
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 16px;
-            p {
+            button {
               margin: 10px;
               padding: 10px;
               font-weight: bold;

@@ -7,28 +7,32 @@ interface ArrowInterface {
 const Arrow = {
   Left: ({ onClick = () => {} }: ArrowInterface) => {
     return (
-      <div
+      <button
         onClick={onClick}
         css={css`
+          border: none;
+          background: none;
           font-size: 2rem;
           cursor: pointer;
         `}
       >
-        <p>👈</p>
-      </div>
+        👈
+      </button>
     );
   },
   Right: ({ onClick = () => {} }: ArrowInterface) => {
     return (
-      <div
+      <button
         onClick={onClick}
         css={css`
+          border: none;
+          background: none;
           font-size: 2rem;
           cursor: pointer;
         `}
       >
-        <p>👉</p>
-      </div>
+        👉
+      </button>
     );
   },
 };

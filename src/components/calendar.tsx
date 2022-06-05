@@ -30,7 +30,7 @@ export function Calendar(props: CalendarProps) {
       <div
         css={css`
           display: grid;
-          grid-template-columns: 30% 40% 30%;
+          grid-template-columns: 40% 20% 40%;
           align-items: center;
           text-align: center;
           margin-top: 10px;
@@ -73,40 +73,48 @@ export function Calendar(props: CalendarProps) {
       >
         {list.length > 0 &&
           list.map((day, i) => (
-            <div
+            <button
               key={i}
               css={css`
-                padding: 0 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                background-color: unset;
+                padding: 4px 5px;
                 border: 1px solid #c8c8c8;
-                text-align: center;
+                gap: 1px;
               `}
               onClick={() => props.onClickDate({ year, month, date: day })}
             >
               {i >= date.start.getDay() && (
-                <p
+                <span
                   css={css`
                     font-size: 12px;
                   `}
                 >
                   {day}
-                </p>
+                </span>
               )}
               {values?.[`${year}-${MM(month)}-${day}`] ? (
-                <p
+                <span
                   css={css`
-                    background-color: purple;
+                    background-color: ${values?.[`${year}-${MM(month)}-${day}`]
+                      ? "purple"
+                      : "unset"};
                     color: white;
                     font-size: 14px;
                     padding: 5px 0;
                     font-weight: bold;
+                    width: 100%;
                   `}
                 >
                   {values?.[`${year}-${MM(month)}-${day}`]}
-                </p>
+                </span>
               ) : (
                 ""
               )}
-            </div>
+            </button>
           ))}
       </div>
       {children != null && children}
