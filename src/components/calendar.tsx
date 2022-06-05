@@ -10,6 +10,7 @@ interface CalendarDate {
 }
 
 interface CalendarProps {
+  children?: React.ReactNode | undefined;
   mode: CalendarMode;
   today: CalendarDate;
   current: CalendarDate;
@@ -19,7 +20,7 @@ interface CalendarProps {
 }
 
 export function Calendar(props: CalendarProps) {
-  const { current, values } = props;
+  const { current, values, children } = props;
   const { year, month } = current;
   const date = getDateLengthOfMonth(year, month);
   const list = getOneMonthDays(date);
@@ -108,6 +109,7 @@ export function Calendar(props: CalendarProps) {
             </div>
           ))}
       </div>
+      {children != null && children}
     </div>
   );
 }

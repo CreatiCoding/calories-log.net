@@ -1,35 +1,33 @@
 import { css } from "@emotion/react";
 
 interface LabelProps {
-  className?: string;
-  name: string;
   value?: string | number;
+  bold?: boolean;
+  big?: boolean;
+  red?: boolean;
 }
-export default function Label({ className, name, value }: LabelProps) {
-  return (
-    <div className={className}>
-      <span
-        css={css`
-          font-weight: bold;
-        `}
-      >
-        {name}
-      </span>
-      <div
-        css={css`
-          display: inline-block;
-          width: 4px;
-        `}
-      />
 
-      <span
-        css={css`
-          font-weight: bold;
-          font-size: 1.4rem;
-          color: red;
-        `}
-      >
-        {value ?? ""}
+export default function Label({
+  value,
+  bold = false,
+  big = false,
+  red = false,
+}: LabelProps) {
+  return (
+    <div
+      css={css`
+        span {
+          ${bold ? `font-weight: bold;` : ``}
+          ${big ? `font-size: 1.4rem;` : ``}
+          ${red ? `color: red;` : ``}
+          line-height: 100%;
+        }
+      `}
+    >
+      <span>
+        {Number.isNaN(Number(value))
+          ? value
+          : Number(value).toLocaleString("en") ?? ""}
       </span>
     </div>
   );

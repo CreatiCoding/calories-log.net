@@ -21,6 +21,11 @@ export function useCalories() {
     fetchCalories()
   );
 
+  const update = (data: Record<string, number>) => {
+    setCalories(data);
+    updateCalories(data);
+  };
+
   const addCalories = (date: string, calory: number) => {
     if (calories[date]) {
       calories[date] += calory;
@@ -28,11 +33,25 @@ export function useCalories() {
       calories[date] = calory;
     }
 
-    setCalories(calories);
-    updateCalories(calories);
+    update(calories);
 
     location.reload();
   };
 
-  return [calories, addCalories] as const;
+  const removeCalories = (date: string) => {
+    calories[date] = 0;
+
+    update(calories);
+
+    location.reload();
+  };
+
+  return [
+    calories,
+    {
+      add: addCalories,
+      remove: removeCalories,
+    },
+    update,
+  ] as const;
 }
