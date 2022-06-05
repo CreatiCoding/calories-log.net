@@ -30,7 +30,7 @@ export function Calendar(props: CalendarProps) {
       <div
         css={css`
           display: grid;
-          grid-template-columns: 40% 20% 40%;
+          grid-template-columns: 35% 30% 35%;
           align-items: center;
           text-align: center;
           margin-top: 10px;
@@ -45,9 +45,7 @@ export function Calendar(props: CalendarProps) {
           }}
         />
 
-        <h3>
-          {year} / {MM(month)}
-        </h3>
+        <h3>{`${year} / ${MM(month)}`}</h3>
 
         <Arrow.Right
           onClick={() => {
@@ -63,7 +61,6 @@ export function Calendar(props: CalendarProps) {
         css={css`
           margin-top: 20px;
           display: grid;
-          grid-gap: 0;
           gap: 10px 20px;
           row-gap: 10px;
           column-gap: 2px;
@@ -81,9 +78,10 @@ export function Calendar(props: CalendarProps) {
                 align-items: center;
                 justify-content: flex-start;
                 background-color: unset;
-                padding: 4px 5px;
+                padding: 0px 5px;
                 border: 1px solid #c8c8c8;
                 gap: 1px;
+                color: black;
               `}
               onClick={() => props.onClickDate({ year, month, date: day })}
             >
