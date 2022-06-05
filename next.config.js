@@ -8,11 +8,13 @@ module.exports = {
     // !! WARN !!
     // ignoreBuildErrors: true,
   },
-  redirects: [
-    {
-      source: "/home",
-      destination: "/",
-      permanent: false,
-    },
-  ],
+  async redirects() {
+    return [
+      {
+        source: "/home",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };
