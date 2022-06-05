@@ -46,11 +46,17 @@ export function useCalories() {
     location.reload();
   };
 
+  const resetCalories = () => {
+    update({});
+    location.reload();
+  };
+
   return [
     calories,
     {
       add: addCalories,
       remove: removeCalories,
+      reset: resetCalories,
     },
     update,
   ] as const;

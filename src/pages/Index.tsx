@@ -13,7 +13,7 @@ import { pageStyle } from "../styles/page";
 
 export default function IndexPage() {
   const [now, setNow] = useState<Date | null>(null);
-  const [calories, { add, remove }] = useCalories();
+  const [calories, { add, remove, reset }] = useCalories();
   const [accSum, setAccSum] = useState(0);
   const [accLength, setAccLength] = useState(0);
   const [monthlySum, setMonthlySum] = useState(0);
@@ -63,7 +63,7 @@ export default function IndexPage() {
       header={Header}
     >
       <MenuDialog
-        keywords={["저장하기", "불러오기"]}
+        keywords={["저장하기", "불러오기", "초기화하기"]}
         onClick={(keyword: string) => {
           switch (keyword) {
             case "저장하기": {
@@ -71,6 +71,9 @@ export default function IndexPage() {
             }
             case "불러오기": {
               return load();
+            }
+            case "초기화하기": {
+              return reset();
             }
           }
         }}
