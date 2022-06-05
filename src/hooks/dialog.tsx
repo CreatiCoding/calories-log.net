@@ -33,6 +33,7 @@ function Dialog({
           align-content: space-evenly;
           text-align: center;
           justify-items: center;
+          color: black;
         `}
         onClick={(e) => {
           e.stopPropagation();
@@ -97,7 +98,7 @@ export function useDialog() {
               margin: 10px;
               padding: 10px;
               font-weight: bold;
-              border: solid 3px;
+              border: solid 3px black;
               border-radius: 16px;
             }
           }
