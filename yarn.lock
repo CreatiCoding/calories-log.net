@@ -271,13 +271,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@divops/auth-middleware@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@divops/auth-middleware@npm:0.0.6"
-  checksum: ea77d8f14e2007372790fd996ea04067e15943b661854b35ccd93b0d8790a921ef1bd90182a67624bb1f85e979df8cc14c6849648cc27bd4fa005733e9a377cc
-  languageName: node
-  linkType: hard
-
 "@divops/axios@npm:^0.0.14":
   version: 0.0.14
   resolution: "@divops/axios@npm:0.0.14"
@@ -412,45 +405,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@divops/notion-database@npm:^0.0.11":
-  version: 0.0.11
-  resolution: "@divops/notion-database@npm:0.0.11"
-  dependencies:
-    "@divops/axios": ^0.0.14
-  checksum: d5f376d53552e6b03b31adbeaffcc183f812ec758da7ec169d38e7ac7991650d13efe15c420a82e01c3a5c929b7d09b83885146d6a810128032ff21bba444dc4
-  languageName: node
-  linkType: hard
-
-"@divops/notion-system@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "@divops/notion-system@npm:0.0.5"
-  peerDependencies:
-    "@divops/auth-middleware": "*"
-    "@divops/notion-database": "*"
-    "@divops/simple-auth": "*"
-    "@divops/simple-cache": "*"
-    "@divops/simple-express-router": "*"
-    express: "*"
-  checksum: cbdc166f010d3700ba8ae84a44a3fc139e07deb2c132c95e20993bd8bf83ce52e2dab73ef7e8fe7c143fc5a3816c69921c0249b711e533fffb54b83782637836
-  languageName: node
-  linkType: hard
-
-"@divops/simple-auth@npm:^0.0.10":
-  version: 0.0.10
-  resolution: "@divops/simple-auth@npm:0.0.10"
-  dependencies:
-    express: ^4.17.3
-  checksum: d86db069101b5162edf256d3404a743bc00de4261e6811b7c49ab163b0a93013384d08d3e117a76e2ef15c50b994450985e0a4c721dd89d0331ba07899a1c4a6
-  languageName: node
-  linkType: hard
-
-"@divops/simple-cache@npm:^0.0.10":
-  version: 0.0.10
-  resolution: "@divops/simple-cache@npm:0.0.10"
-  checksum: 7f4b3904249bcbf110fadc1ab901c9a9f4487c281c5bb441227c1e341f49df5ce620c3d7880a119950ac0afd9101f4a05b36386ed6377ab7891badfe2b42d180
-  languageName: node
-  linkType: hard
-
 "@divops/simple-express-router@npm:^0.0.5":
   version: 0.0.5
   resolution: "@divops/simple-express-router@npm:0.0.5"
@@ -471,16 +425,6 @@ __metadata:
     react: "*"
     react-dom: "*"
   checksum: 8c07fb022d971003b7ba124e90f845fb06079c9a24bbe54f8bd5fbb58f75fec9138d6bff11a17b435b1ff61172638573cec51160a0f6359c802a719d86030177
-  languageName: node
-  linkType: hard
-
-"@divops/thumbnails-route@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@divops/thumbnails-route@npm:0.0.6"
-  peerDependencies:
-    "@divops/thumbnails": ^0.0.11
-    express: "*"
-  checksum: 597cfe9b37e3dc0b0f1e8656b3d563688f3164ffa525f31acfffd04ec85aad300d9bd4c0a38d96d68e0c027b1852a1c13c1a61787a930379029405608e7f296d
   languageName: node
   linkType: hard
 
@@ -2231,7 +2175,6 @@ __metadata:
   resolution: "calories-log.net@workspace:."
   dependencies:
     "@babel/core": ^7.18.0
-    "@divops/auth-middleware": ^0.0.6
     "@divops/axios": ^0.0.14
     "@divops/component-card": ^0.0.4
     "@divops/component-footer": ^0.0.1
@@ -2244,13 +2187,8 @@ __metadata:
     "@divops/component-space": ^0.0.1
     "@divops/component-thumbs": ^0.0.1
     "@divops/component-title": ^0.0.10
-    "@divops/notion-database": ^0.0.11
-    "@divops/notion-system": ^0.0.5
-    "@divops/simple-auth": ^0.0.10
-    "@divops/simple-cache": ^0.0.10
     "@divops/simple-express-router": ^0.0.5
     "@divops/thumbnails": ^0.0.11
-    "@divops/thumbnails-route": ^0.0.6
     "@divops/tool-simple-next-server-starter": ^0.0.4
     "@emotion/babel-plugin": ^11.9.2
     "@emotion/react": ^11.9.0
@@ -3369,7 +3307,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.17.3, express@npm:^4.18.1":
+"express@npm:^4.18.1":
   version: 4.18.1
   resolution: "express@npm:4.18.1"
   dependencies:

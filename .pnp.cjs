@@ -34,7 +34,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@babel/core", "npm:7.18.0"],\
-            ["@divops/auth-middleware", "npm:0.0.6"],\
             ["@divops/axios", "npm:0.0.14"],\
             ["@divops/component-card", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.4"],\
             ["@divops/component-footer", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.1"],\
@@ -47,13 +46,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@divops/component-space", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.1"],\
             ["@divops/component-thumbs", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.1"],\
             ["@divops/component-title", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.10"],\
-            ["@divops/notion-database", "npm:0.0.11"],\
-            ["@divops/notion-system", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5"],\
-            ["@divops/simple-auth", "npm:0.0.10"],\
-            ["@divops/simple-cache", "npm:0.0.10"],\
             ["@divops/simple-express-router", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5"],\
             ["@divops/thumbnails", "npm:0.0.11"],\
-            ["@divops/thumbnails-route", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.6"],\
             ["@divops/tool-simple-next-server-starter", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.4"],\
             ["@emotion/babel-plugin", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:11.9.2"],\
             ["@emotion/react", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:11.9.0"],\
@@ -398,15 +392,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.18.0"],\
             ["@babel/helper-validator-identifier", "npm:7.16.7"],\
             ["to-fast-properties", "npm:2.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@divops/auth-middleware", [\
-        ["npm:0.0.6", {\
-          "packageLocation": "./.yarn/cache/@divops-auth-middleware-npm-0.0.6-bb91449465-ea77d8f14e.zip/node_modules/@divops/auth-middleware/",\
-          "packageDependencies": [\
-            ["@divops/auth-middleware", "npm:0.0.6"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -757,77 +742,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["@divops/notion-database", [\
-        ["npm:0.0.11", {\
-          "packageLocation": "./.yarn/cache/@divops-notion-database-npm-0.0.11-76b9423039-d5f376d535.zip/node_modules/@divops/notion-database/",\
-          "packageDependencies": [\
-            ["@divops/notion-database", "npm:0.0.11"],\
-            ["@divops/axios", "npm:0.0.14"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@divops/notion-system", [\
-        ["npm:0.0.5", {\
-          "packageLocation": "./.yarn/cache/@divops-notion-system-npm-0.0.5-7d9acaf1ca-cbdc166f01.zip/node_modules/@divops/notion-system/",\
-          "packageDependencies": [\
-            ["@divops/notion-system", "npm:0.0.5"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5", {\
-          "packageLocation": "./.yarn/__virtual__/@divops-notion-system-virtual-b699194176/0/cache/@divops-notion-system-npm-0.0.5-7d9acaf1ca-cbdc166f01.zip/node_modules/@divops/notion-system/",\
-          "packageDependencies": [\
-            ["@divops/notion-system", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5"],\
-            ["@divops/auth-middleware", "npm:0.0.6"],\
-            ["@divops/notion-database", "npm:0.0.11"],\
-            ["@divops/simple-auth", "npm:0.0.10"],\
-            ["@divops/simple-cache", "npm:0.0.10"],\
-            ["@divops/simple-express-router", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5"],\
-            ["@types/divops__auth-middleware", null],\
-            ["@types/divops__notion-database", null],\
-            ["@types/divops__simple-auth", null],\
-            ["@types/divops__simple-cache", null],\
-            ["@types/divops__simple-express-router", null],\
-            ["@types/express", "npm:4.17.13"],\
-            ["express", "npm:4.18.1"]\
-          ],\
-          "packagePeers": [\
-            "@divops/auth-middleware",\
-            "@divops/notion-database",\
-            "@divops/simple-auth",\
-            "@divops/simple-cache",\
-            "@divops/simple-express-router",\
-            "@types/divops__auth-middleware",\
-            "@types/divops__notion-database",\
-            "@types/divops__simple-auth",\
-            "@types/divops__simple-cache",\
-            "@types/divops__simple-express-router",\
-            "@types/express",\
-            "express"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@divops/simple-auth", [\
-        ["npm:0.0.10", {\
-          "packageLocation": "./.yarn/cache/@divops-simple-auth-npm-0.0.10-59e11b4c3f-d86db06910.zip/node_modules/@divops/simple-auth/",\
-          "packageDependencies": [\
-            ["@divops/simple-auth", "npm:0.0.10"],\
-            ["express", "npm:4.18.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@divops/simple-cache", [\
-        ["npm:0.0.10", {\
-          "packageLocation": "./.yarn/cache/@divops-simple-cache-npm-0.0.10-69b5301c27-7f4b390424.zip/node_modules/@divops/simple-cache/",\
-          "packageDependencies": [\
-            ["@divops/simple-cache", "npm:0.0.10"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["@divops/simple-express-router", [\
         ["npm:0.0.5", {\
           "packageLocation": "./.yarn/cache/@divops-simple-express-router-npm-0.0.5-f2c898ca2a-92b24a2fef.zip/node_modules/@divops/simple-express-router/",\
@@ -891,32 +805,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@divops/thumbnails", "npm:0.0.11"],\
             ["jimp", "npm:0.16.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@divops/thumbnails-route", [\
-        ["npm:0.0.6", {\
-          "packageLocation": "./.yarn/cache/@divops-thumbnails-route-npm-0.0.6-6097e30742-597cfe9b37.zip/node_modules/@divops/thumbnails-route/",\
-          "packageDependencies": [\
-            ["@divops/thumbnails-route", "npm:0.0.6"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.6", {\
-          "packageLocation": "./.yarn/__virtual__/@divops-thumbnails-route-virtual-ab7180eeb8/0/cache/@divops-thumbnails-route-npm-0.0.6-6097e30742-597cfe9b37.zip/node_modules/@divops/thumbnails-route/",\
-          "packageDependencies": [\
-            ["@divops/thumbnails-route", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.6"],\
-            ["@divops/thumbnails", "npm:0.0.11"],\
-            ["@types/divops__thumbnails", null],\
-            ["@types/express", "npm:4.17.13"],\
-            ["express", "npm:4.18.1"]\
-          ],\
-          "packagePeers": [\
-            "@divops/thumbnails",\
-            "@types/divops__thumbnails",\
-            "@types/express",\
-            "express"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3349,7 +3237,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["calories-log.net", "workspace:."],\
             ["@babel/core", "npm:7.18.0"],\
-            ["@divops/auth-middleware", "npm:0.0.6"],\
             ["@divops/axios", "npm:0.0.14"],\
             ["@divops/component-card", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.4"],\
             ["@divops/component-footer", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.1"],\
@@ -3362,13 +3249,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@divops/component-space", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.1"],\
             ["@divops/component-thumbs", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.1"],\
             ["@divops/component-title", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.10"],\
-            ["@divops/notion-database", "npm:0.0.11"],\
-            ["@divops/notion-system", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5"],\
-            ["@divops/simple-auth", "npm:0.0.10"],\
-            ["@divops/simple-cache", "npm:0.0.10"],\
             ["@divops/simple-express-router", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.5"],\
             ["@divops/thumbnails", "npm:0.0.11"],\
-            ["@divops/thumbnails-route", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.6"],\
             ["@divops/tool-simple-next-server-starter", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:0.0.4"],\
             ["@emotion/babel-plugin", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:11.9.2"],\
             ["@emotion/react", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:11.9.0"],\
