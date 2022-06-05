@@ -3,22 +3,18 @@ import { css } from "@emotion/react";
 interface LabelProps {
   value?: string | number;
   bold?: boolean;
-  big?: boolean;
+  size?: "big" | "small";
   red?: boolean;
 }
 
-export function Label({
-  value,
-  bold = false,
-  big = false,
-  red = false,
-}: LabelProps) {
+export function Label({ value, bold = false, size, red = false }: LabelProps) {
   return (
     <div
       css={css`
         span {
           ${bold ? `font-weight: bold;` : ``}
-          ${big ? `font-size: 1.4rem;` : ``}
+          ${size === "big" ? `font-size: 1.4rem;` : ``}
+          ${size === "small" ? `font-size: 0.8rem;` : ``}
           ${red ? `color: red;` : ``}
           line-height: 100%;
         }

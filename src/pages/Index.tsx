@@ -86,10 +86,10 @@ export default function IndexPage() {
       ></HambergerMenu>
       <Dashboard
         css={css`
-          width: 350px;
+          width: 300px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 18% 20% 28% 19% 15%;
+          grid-template-columns: 17% 13% 31% 13% 26%;
           align-items: center;
           text-align: center;
           margin-top: 10px;

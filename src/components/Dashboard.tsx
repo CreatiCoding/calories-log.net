@@ -19,7 +19,7 @@ export function Dashboard({ className, labels }: DashboardProps) {
             value={label}
             bold
             red={scale}
-            big={scale}
+            size={scale ? "big" : mod5 ? "small" : undefined}
           />
         );
       })}
