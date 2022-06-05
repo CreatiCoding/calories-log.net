@@ -7,7 +7,7 @@ interface LabelProps {
   red?: boolean;
 }
 
-export default function Label({
+export function Label({
   value,
   bold = false,
   big = false,
