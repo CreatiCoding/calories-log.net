@@ -56,6 +56,8 @@ export default function IndexPage() {
         text-align: center;
         div > h1 {
           padding: 1rem 0 1rem 0;
+          font-size: 1.5em;
+          line-height: 2rem;
         }
       `}
       header={Header}
@@ -77,10 +79,10 @@ export default function IndexPage() {
         css={css`
           display: inline-block;
           margin: 0;
-          position: fixed;
+          position: absolute;
           top: 0;
           left: 0;
-          transform: translate(25px, 20px);
+          transform: translate(25px, 18px);
         `}
         onClick={() => openMenu()}
       ></HambergerMenu>
