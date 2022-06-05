@@ -42,6 +42,7 @@ function Dialog({
             key={keyword}
             onClick={(e) => {
               e.preventDefault();
+              e.stopPropagation();
               onClick(keyword);
               setOpen(false);
             }}

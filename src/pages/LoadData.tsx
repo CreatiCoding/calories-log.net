@@ -8,14 +8,17 @@ export default function LoadDataPage() {
   const [, , update] = useCalories();
 
   useEffect(() => {
-    const { code } = router.query;
+    const code = router.query.code;
 
     if (code == null || typeof code !== "string") {
       return;
     }
 
     (async () => {
-      const { data } = await loadData({ code });
+      const { id, data } = await loadData({ code });
+      if (id == null) {
+        return;
+      }
       update(data);
       router.push("/");
     })();

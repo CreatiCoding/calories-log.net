@@ -4,26 +4,45 @@ const axios = require("axios");
 module.exports = {
   customServer: (server) => {
     server.post("/api/data/save", async (req, res) => {
-      const id = await getKakaoId(
-        req.body.code,
-        "http://localhost:3000/save/data"
-      );
+      try {
+        const id = await getKakaoId(
+          req.body.code,
+          `${process.env.NEXT_PUBLIC_HOSTNAME}/save/data`
+        );
 
-      await setUserData({ id, data: req.body.data });
+        await setUserData({ id, data: req.body.data });
 
-      return res.status(200).json({ id });
+        return res.status(200).json({ id });
+      } catch (e) {
+        if (e.response.data.error_code === "KOE320") {
+          return res.status(200).json({
+            id: null,
+          });
+        }
+        throw e;
+      }
     });
 
     server.post("/api/data/load", async (req, res) => {
-      const id = await getKakaoId(
-        req.body.code,
-        "http://localhost:3000/load/data"
-      );
+      try {
+        const id = await getKakaoId(
+          req.body.code,
+          `${process.env.NEXT_PUBLIC_HOSTNAME}/load/data`
+        );
 
-      return res.status(200).json({
-        id,
-        data: await getUserData({ id }),
-      });
+        return res.status(200).json({
+          id,
+          data: await getUserData({ id }),
+        });
+      } catch (e) {
+        if (e.response.data.error_code === "KOE320") {
+          return res.status(200).json({
+            id: null,
+            data: null,
+          });
+        }
+        throw e;
+      }
     });
   },
 };

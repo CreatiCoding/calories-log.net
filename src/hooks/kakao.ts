@@ -19,7 +19,7 @@ export function useKakao() {
       console.log("save is called");
 
       window.Kakao.Auth.authorize({
-        redirectUri: `http://localhost:3000/save/data`,
+        redirectUri: `${process.env.NEXT_PUBLIC_HOSTNAME}/save/data`,
       });
     },
     () => {
@@ -30,10 +30,10 @@ export function useKakao() {
           //
         }
       }
-      console.log("load is called");
+      console.log("load is called", process.env.NEXT_PUBLIC_HOSTNAME);
 
       window.Kakao.Auth.authorize({
-        redirectUri: `http://localhost:3000/load/data`,
+        redirectUri: `${process.env.NEXT_PUBLIC_HOSTNAME}/load/data`,
       });
     },
   ] as const;

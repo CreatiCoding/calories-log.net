@@ -17,7 +17,7 @@ export function Button({ type }: { type: "save" | "load" }) {
       <button
         onClick={() => {
           window.Kakao.Auth.authorize({
-            redirectUri: `http://localhost:3000/${type}/data`,
+            redirectUri: `${process.env.NEXT_PUBLIC_HOSTNAME}/${type}/data`,
           });
         }}
       >
