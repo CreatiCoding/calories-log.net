@@ -87,9 +87,10 @@ export function useDialog() {
           width: 100vw;
           height: 100vh;
           & > div {
+            padding: 10px 0;
             background-color: white;
             width: 75vw;
-            height: ${keywords == null ? 0 : keywords.length * 100}px;
+            height: ${keywords == null ? 0 : keywords.length * 75}px;
             position: relative;
             top: 50%;
             left: 50%;

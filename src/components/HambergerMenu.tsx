@@ -16,10 +16,10 @@ export function HambergerMenu({ children, className, onClick }: Props) {
       className={className}
       onClick={onClick}
     >
-      <svg viewBox="0 0 80 70" width="30" height="30">
-        <rect width="80" height="10"></rect>
-        <rect y="30" width="80" height="10"></rect>
-        <rect y="60" width="80" height="10"></rect>
+      <svg viewBox="0 0 80 80" width="25" height="25">
+        <rect x="35" y="10" width="10" height="10"></rect>
+        <rect x="35" y="40" width="10" height="10"></rect>
+        <rect x="35" y="70" width="10" height="10"></rect>
       </svg>
       {(children = !null && children)}
     </button>

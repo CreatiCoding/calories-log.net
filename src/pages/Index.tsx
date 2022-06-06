@@ -84,8 +84,8 @@ export default function IndexPage() {
           margin: 0;
           position: absolute;
           top: 0;
-          left: 0;
-          transform: translate(25px, 18px);
+          right: 0;
+          transform: translate(-15px, 17px);
         `}
         onClick={() => openMenu()}
       ></HambergerMenu>
