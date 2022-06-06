@@ -78,11 +78,16 @@ export function Calendar(props: CalendarProps) {
                 justify-content: flex-start;
                 background-color: unset;
                 border: ${day > 0 ? `1px solid #c8c8c8` : "0"};
+                ${day <= 0 ? "pointer-events: none;" : ""}
                 border-radius: 8px;
                 color: black;
                 overflow: hidden;
               `}
-              onClick={() => props.onClickDate({ year, month, date: day })}
+              onClick={
+                day <= 0
+                  ? () => {}
+                  : () => props.onClickDate({ year, month, date: day })
+              }
             >
               {i >= date.start.getDay() && (
                 <span
