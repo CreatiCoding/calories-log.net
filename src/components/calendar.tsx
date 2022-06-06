@@ -61,8 +61,9 @@ export function Calendar(props: CalendarProps) {
         css={css`
           margin-top: 20px;
           display: grid;
-          grid-template-columns: repeat(7, 14.2856%);
+          grid-template-columns: repeat(7, 13.7856%);
           grid-template-rows: repeat(6, 50px);
+          gap: 0.58333%;
         `}
       >
         {list.length > 0 &&
