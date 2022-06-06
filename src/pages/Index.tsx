@@ -1,5 +1,6 @@
 import Page from "@divops/component-page";
 import { css } from "@emotion/react";
+import * as localStorage from "local-storage";
 import Header from "next/head";
 import { useEffect, useState } from "react";
 import { Calendar } from "../components/calendar";
@@ -21,6 +22,7 @@ export default function IndexPage() {
   const [Dialog, open] = useDialog();
   const [MenuDialog, openMenu] = useDialog();
   const [save, load] = useKakao();
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     setAccSum(Object.values(calories).reduce((acc, cur) => acc + cur, 0));
@@ -42,6 +44,10 @@ export default function IndexPage() {
 
   useEffect(() => {
     setNow(new Date());
+  }, []);
+
+  useEffect(() => {
+    setEmail(localStorage.get("kakao-email"));
   }, []);
 
   if (now == null) {
@@ -156,6 +162,19 @@ export default function IndexPage() {
           }}
         />
       </Calendar>
+      <>
+        {email && (
+          <p
+            css={css`
+              padding: 0 20px;
+              text-align: right;
+              font-size: 10px;
+            `}
+          >
+            {email}님, 환영합니다 🙇‍♂️
+          </p>
+        )}
+      </>
     </Page>
   );
 }
