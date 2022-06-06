@@ -14,7 +14,10 @@ export async function get(url: string, query: Record<string, string>) {
   return await response.json();
 }
 
-export async function post(url: string, body: Record<string, string>) {
+export async function post(
+  url: string,
+  body: Record<string, string | undefined>
+) {
   const response = await fetch(url, {
     method: "POST",
     headers: {

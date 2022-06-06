@@ -1,3 +1,4 @@
+import * as localStorage from "local-storage";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useCalories } from "../hooks/calories";
@@ -15,6 +16,19 @@ export default function LoadDataPage() {
     }
 
     (async () => {
+      if (localStorage.get("kakao-email") != null) {
+        const email = localStorage.get("kakao-email") as string;
+        const { data } = await loadData({ email });
+
+        if (data == null) {
+          return;
+        }
+
+        update(data);
+        router.push("/");
+        return;
+      }
+
       const { email, data } = await loadData({ code });
 
       if (email == null || data == null) {
@@ -22,7 +36,7 @@ export default function LoadDataPage() {
       }
 
       if (email != null) {
-        localStorage.setItem("kakao-email", email);
+        localStorage.set("kakao-email", email);
       }
 
       update(data);
