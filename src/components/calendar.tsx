@@ -61,10 +61,7 @@ export function Calendar(props: CalendarProps) {
         css={css`
           margin-top: 20px;
           display: grid;
-          gap: 10px 20px;
-          row-gap: 10px;
-          column-gap: 2px;
-          grid-template-columns: repeat(auto-fill, minmax(12.5%, auto));
+          grid-template-columns: repeat(7, 14.2856%);
           grid-template-rows: repeat(6, 50px);
         `}
       >
@@ -73,14 +70,15 @@ export function Calendar(props: CalendarProps) {
             <button
               key={i}
               css={css`
+                padding: 0;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
                 background-color: unset;
-                padding: 0px 5px;
+                /* padding: 0px 5px; */
                 border: 1px solid #c8c8c8;
-                gap: 1px;
+                /* gap: 1px; */
                 color: black;
               `}
               onClick={() => props.onClickDate({ year, month, date: day })}
@@ -88,7 +86,10 @@ export function Calendar(props: CalendarProps) {
               {i >= date.start.getDay() && (
                 <span
                   css={css`
-                    font-size: 12px;
+                    font-size: 14px;
+                    width: 100%;
+                    height: 100%;
+                    line-height: 22px;
                   `}
                 >
                   {day}
@@ -102,9 +103,10 @@ export function Calendar(props: CalendarProps) {
                       : "unset"};
                     color: white;
                     font-size: 14px;
-                    padding: 5px 0;
                     font-weight: bold;
                     width: 100%;
+                    height: 100%;
+                    line-height: 22px;
                   `}
                 >
                   {values?.[`${year}-${MM(month)}-${day}`]}
