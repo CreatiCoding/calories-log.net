@@ -1,3 +1,5 @@
+import * as localStorage from "local-storage";
+import { useRouter } from "next/router";
 import { KAKAO_APP_KEY_JAVASCRIPT } from "../constant";
 
 declare global {
@@ -7,6 +9,7 @@ declare global {
 }
 
 export function useKakao() {
+  const router = useRouter();
   return [
     () => {
       if (typeof window !== "undefined") {
@@ -25,6 +28,10 @@ export function useKakao() {
         if (!window.Kakao.isInitialized()) {
           window.Kakao.init(KAKAO_APP_KEY_JAVASCRIPT);
         }
+      }
+
+      if (localStorage.get("kakao-email")) {
+        router.push("/load/data");
       }
 
       window.Kakao.Auth.authorize({

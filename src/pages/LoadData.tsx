@@ -11,10 +11,6 @@ export default function LoadDataPage() {
   useEffect(() => {
     const code = router.query.code;
 
-    if (code == null || typeof code !== "string") {
-      return;
-    }
-
     (async () => {
       if (localStorage.get("kakao-email") != null) {
         const email = localStorage.get("kakao-email") as string;
@@ -25,6 +21,12 @@ export default function LoadDataPage() {
         }
 
         update(data);
+        router.push("/");
+        return;
+      }
+
+      if (code == null || typeof code !== "string") {
+        alert("올바르지 않은 요청입니다.");
         router.push("/");
         return;
       }
