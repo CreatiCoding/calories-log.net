@@ -63,13 +63,13 @@ export default function IndexPage() {
       header={Header}
     >
       <MenuDialog
-        keywords={["저장하기", "불러오기", "초기화하기"]}
+        keywords={["백업하기", "복원하기", "초기화하기"]}
         onClick={(keyword: string) => {
           switch (keyword) {
-            case "저장하기": {
+            case "백업하기": {
               return save();
             }
-            case "불러오기": {
+            case "복원하기": {
               return load();
             }
             case "초기화하기": {
