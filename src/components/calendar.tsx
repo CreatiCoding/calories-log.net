@@ -77,8 +77,9 @@ export function Calendar(props: CalendarProps) {
                 justify-content: flex-start;
                 background-color: unset;
                 /* padding: 0px 5px; */
-                border: 1px solid #c8c8c8;
+                border: ${day > 0 ? `1px solid #c8c8c8` : "0"};
                 /* gap: 1px; */
+                border-radius: 8px;
                 color: black;
               `}
               onClick={() => props.onClickDate({ year, month, date: day })}
