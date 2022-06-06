@@ -16,15 +16,17 @@ export async function get(url: string, query: Record<string, string>) {
 
 export async function post(
   url: string,
-  body: Record<string, string | undefined>
+  body?: Record<string, string | undefined>
 ) {
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
+    ...(body ? { body: JSON.stringify(body) } : {}),
   });
+
+  console.log({ response });
 
   return await response.json();
 }

@@ -6,6 +6,7 @@ module.exports = withPWA({
   pwa: {
     dest: "public",
     runtimeCaching,
+    mode: "production",
   },
   reactStrictMode: true,
   typescript: {

@@ -21,7 +21,7 @@ export default function IndexPage() {
   const [monthlyLength, setMonthlyLength] = useState(0);
   const [Dialog, open] = useDialog();
   const [MenuDialog, openMenu] = useDialog();
-  const [save, load] = useKakao();
+  const [save, load, login, logout] = useKakao();
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
@@ -69,17 +69,23 @@ export default function IndexPage() {
       header={Header}
     >
       <MenuDialog
-        keywords={["백업하기", "복원하기", "초기화하기"]}
-        onClick={(keyword: string) => {
+        keywords={["백업하기", "복원하기", "초기화하기", "로그인", "로그아웃"]}
+        onClick={async (keyword: string) => {
           switch (keyword) {
             case "백업하기": {
-              return save();
+              return await save();
             }
             case "복원하기": {
-              return load();
+              return await load();
             }
             case "초기화하기": {
               return reset();
+            }
+            case "로그인": {
+              return login();
+            }
+            case "로그아웃": {
+              return await logout();
             }
           }
         }}
