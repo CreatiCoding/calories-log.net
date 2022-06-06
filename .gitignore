@@ -191,5 +191,7 @@ yarn-error.log*
 calories-log.net.tar.gz
 
 sw.js
+sw.js.map
 workbox-*.js
+workbox-*.js.map
 fallback-*.js

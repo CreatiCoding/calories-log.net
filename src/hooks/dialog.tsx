@@ -45,6 +45,7 @@ function Dialog({
               width: 200px;
               margin: 0 auto;
               color: black;
+              font-size: 1rem;
             `}
             key={keyword}
             onClick={(e) => {
