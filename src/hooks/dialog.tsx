@@ -97,12 +97,17 @@ export function useDialog() {
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 16px;
+            box-shadow: rgb(0 0 0 / 60%) 0px 4px 8px 0px,
+              rgb(0 0 0 / 70%) 0px 6px 20px 0px;
             button {
               margin: 10px;
               padding: 10px;
               font-weight: bold;
-              border: solid 3px black;
               border-radius: 16px;
+              border: solid 1px #e0e0e0;
+              background-color: #e0e0e0;
+              box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px,
+                rgb(0 0 0 / 19%) 0px 6px 20px 0px;
             }
           }
         `}
