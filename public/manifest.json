@@ -1,0 +1,17 @@
+{
+  "name": "Calories Log",
+  "short_name": "Calories",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}

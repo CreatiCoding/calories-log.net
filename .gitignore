@@ -189,3 +189,7 @@ yarn-error.log*
 !.yarn/versions
 
 calories-log.net.tar.gz
+
+sw.js
+workbox-*.js
+fallback-*.js
