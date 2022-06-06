@@ -32,6 +32,7 @@ export function useKakao() {
 
       if (localStorage.get("kakao-email")) {
         router.push("/load/data");
+        return;
       }
 
       window.Kakao.Auth.authorize({
