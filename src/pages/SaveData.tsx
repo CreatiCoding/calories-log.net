@@ -15,7 +15,6 @@ export default function SaveDataPage() {
     }
 
     (async () => {
-      console.log("prev", { code, data: calories });
       await saveData({ code, data: calories });
       router.push("/");
     })();

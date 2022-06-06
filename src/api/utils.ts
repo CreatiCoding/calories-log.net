@@ -1,7 +1,18 @@
 import { Octokit } from "@octokit/rest";
 import axios from "axios";
 
-export async function getKakaoId(code: string, redirect_uri: string) {
+interface KakaoAccount {
+  id: number;
+  has_email: boolean;
+  email_needs_agreement: boolean;
+  is_email_valid: boolean;
+  is_email_verified: boolean;
+  email: string;
+}
+export async function getKakaoAccount(
+  code: string,
+  redirect_uri: string
+): Promise<KakaoAccount> {
   const { KAKAO_REST_API_KEY = "", KAKAO_CLIENT_SECRET = "" } = process.env;
 
   if (KAKAO_CLIENT_SECRET === "" || KAKAO_REST_API_KEY === "") {
@@ -26,18 +37,30 @@ export async function getKakaoId(code: string, redirect_uri: string) {
   );
 
   const {
-    data: { id },
+    data: { id, kakao_account },
   } = await axios.get("https://kapi.kakao.com/v2/user/me", {
+    params: {
+      property_keys: ["kakao_account.email"],
+    },
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
       Authorization: `Bearer ${data.access_token}`,
     },
   });
 
-  return id;
+  return {
+    ...kakao_account,
+    id,
+  };
 }
 
-export async function setUserData({ id, data }: { id: string; data: any }) {
+export async function setUserData({
+  email,
+  data,
+}: {
+  email: string;
+  data: any;
+}) {
   const octokit = new Octokit({
     auth: `token ${process.env.GITHUB_TOKEN}`,
   });
@@ -49,7 +72,7 @@ export async function setUserData({ id, data }: { id: string; data: any }) {
       } = (await octokit.rest.repos.getContent({
         owner: "creaticoding",
         repo: "calories-log.net-storage",
-        path: "users/" + id + ".json",
+        path: "users/" + email + ".json",
       })) as { data: { sha: string } };
 
       return sha;
@@ -61,14 +84,14 @@ export async function setUserData({ id, data }: { id: string; data: any }) {
   await octokit.rest.repos.createOrUpdateFileContents({
     owner: "creaticoding",
     repo: "calories-log.net-storage",
-    path: "users/" + id + ".json",
-    message: "update user(" + id + ")",
+    path: "users/" + email + ".json",
+    message: "update user(" + email + ")",
     sha,
     content: Buffer.from(JSON.stringify(data)).toString("base64"),
   });
 }
 
-export async function getUserData({ id }: { id: string }) {
+export async function getUserData({ email }: { email: string }) {
   const octokit = new Octokit({
     auth: `token ${process.env.GITHUB_TOKEN}`,
   });
@@ -76,7 +99,7 @@ export async function getUserData({ id }: { id: string }) {
   const { data } = (await octokit.rest.repos.getContent({
     owner: "creaticoding",
     repo: "calories-log.net-storage",
-    path: "users/" + id + ".json",
+    path: "users/" + email + ".json",
   })) as { data: { content: string } };
 
   return JSON.parse(Buffer.from(data.content, "base64").toString());

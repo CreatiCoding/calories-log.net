@@ -15,10 +15,16 @@ export default function LoadDataPage() {
     }
 
     (async () => {
-      const { id, data } = await loadData({ code });
-      if (id == null) {
+      const { email, data } = await loadData({ code });
+
+      if (email == null || data == null) {
         return;
       }
+
+      if (email != null) {
+        localStorage.setItem("kakao-email", email);
+      }
+
       update(data);
       router.push("/");
     })();

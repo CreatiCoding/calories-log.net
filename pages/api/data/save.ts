@@ -1,8 +1,9 @@
-import { getKakaoId, setUserData } from "../../../src/api/utils";
+import { getKakaoAccount, setUserData } from "../../../src/api/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = {
-  id?: string | null;
+  id?: string | number | null;
+  email?: string | null;
   message?: string;
   data?: any;
 };
@@ -12,14 +13,14 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   try {
-    const id = (await getKakaoId(
+    const { email, id } = await getKakaoAccount(
       req.body.code,
       `${process.env.NEXT_PUBLIC_HOSTNAME}/save/data`
-    )) as string;
+    );
 
-    await setUserData({ id, data: req.body.data });
+    await setUserData({ email, data: req.body.data });
 
-    return res.status(200).json({ id });
+    return res.status(200).json({ id, email });
   } catch (e: any) {
     if (e.response.data.error_code === "KOE320") {
       return res.status(200).json({
