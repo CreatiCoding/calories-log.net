@@ -1,4 +1,8 @@
-import { getKakaoAccount, getTokenFromKakao } from "../../../src/api/utils";
+import {
+  getKakaoAccount,
+  getTokenFromKakao,
+  setHeaderToken,
+} from "../../../src/api/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = {
@@ -13,17 +17,12 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   try {
-    const { accessToken, refreshToken } = await getTokenFromKakao(
-      req.body.code
-    );
+    const token = await getTokenFromKakao(req.body.code);
 
-    const { email } = await getKakaoAccount({ accessToken });
+    const { email } = await getKakaoAccount(token);
     return res
       .status(200)
-      .setHeader("Set-Cookie", [
-        `accessToken=${accessToken}; path=/; httpOnly; SameSite=Strict; Max-Age=31536000; secure`,
-        `refreshToken=${refreshToken}; path=/; httpOnly; SameSite=Strict; Max-Age=31536000; secure`,
-      ])
+      .setHeader(setHeaderToken(token)[0], setHeaderToken(token)[1])
       .json({ status: "ok", email });
   } catch (e: any) {
     if (e.response.data.error_code === "KOE320") {

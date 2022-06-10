@@ -2,13 +2,18 @@ import { Octokit } from "@octokit/rest";
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+export interface KakaoToken {
+  accessToken?: string;
+  refreshToken: string;
+}
+
 export async function getKakaoToken({
   code,
   redirectUri,
 }: {
   code: string;
   redirectUri: string;
-}): Promise<{ accessToken: string; refreshToken: string }> {
+}): Promise<KakaoToken> {
   const { KAKAO_REST_API_KEY = "", KAKAO_CLIENT_SECRET = "" } = process.env;
 
   if (KAKAO_CLIENT_SECRET === "" || KAKAO_REST_API_KEY === "") {
@@ -49,9 +54,7 @@ interface KakaoAccount {
 
 export async function getKakaoAccount({
   accessToken,
-}: {
-  accessToken: string;
-}): Promise<KakaoAccount> {
+}: Pick<KakaoToken, "accessToken">): Promise<KakaoAccount> {
   const {
     data: { id, kakao_account },
   } = await axios.get("https://kapi.kakao.com/v2/user/me", {
@@ -121,11 +124,8 @@ export async function getUserData({ email }: { email: string }) {
   return JSON.parse(Buffer.from(data.content, "base64").toString());
 }
 
-export function getTokenFromCookie(req: NextApiRequest): {
-  accessToken: string;
-  refreshToken: string;
-} | null {
-  const cookies = (req.headers.cookie || "").split("; ");
+export function getTokenFromCookie(cookie?: string): KakaoToken | null {
+  const cookies = (cookie || "").split("; ");
   const accessToken = cookies
     .find((cookie) => cookie.startsWith("accessToken="))
     ?.split("=")[1];
@@ -133,21 +133,95 @@ export function getTokenFromCookie(req: NextApiRequest): {
     .find((cookie) => cookie.startsWith("refreshToken="))
     ?.split("=")[1];
 
-  if (accessToken == null || refreshToken == null) {
+  if (refreshToken == null) {
     return null;
   }
 
   return { accessToken, refreshToken };
 }
 
-export async function getTokenFromKakao(
-  code: string
-): Promise<{ accessToken: string; refreshToken: string }> {
+export async function getTokenFromKakao(code: string): Promise<KakaoToken> {
   const redirectUri = `${process.env.NEXT_PUBLIC_HOSTNAME}/kakao/login`;
 
   return await getKakaoToken({ code, redirectUri });
 }
 
 export async function getToken(req: NextApiRequest) {
-  return getTokenFromCookie(req) ?? (await getTokenFromKakao(req.body.code));
+  return (
+    getTokenFromCookie(req.headers.cookie) ??
+    (await getTokenFromKakao(req.body.code))
+  );
+}
+
+export async function renewalAccessToken(refreshToken: string) {
+  const { KAKAO_REST_API_KEY = "", KAKAO_CLIENT_SECRET = "" } = process.env;
+
+  if (KAKAO_CLIENT_SECRET === "" || KAKAO_REST_API_KEY === "") {
+    throw new Error("KAKAO_CLIENT_SECRET or KAKAO_REST_API_KEY is not defined");
+  }
+
+  const params = new URLSearchParams();
+  params.append("grant_type", "refresh_token");
+  params.append("client_id", KAKAO_REST_API_KEY);
+  params.append("client_secret", KAKAO_CLIENT_SECRET);
+  params.append("refresh_token", refreshToken);
+
+  const { data } = await axios.post(
+    "https://kauth.kakao.com/oauth/token",
+    params,
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+    }
+  );
+
+  return { accessToken: data.access_token, refreshToken } as KakaoToken;
+}
+
+export async function getKakaoEmail(
+  cookie?: string
+): Promise<{ email: string; token?: KakaoToken }> {
+  const token = await getTokenFromCookie(cookie);
+
+  if (token == null) {
+    throw new Error("로그인을 먼저 해주세요");
+  }
+
+  const refreshToken = token.refreshToken;
+
+  try {
+    const { email } = await getKakaoAccount(token);
+
+    return { email };
+  } catch (error: any) {
+    if (error.response.data.msg === "this access token does not exist") {
+      const token = await renewalAccessToken(refreshToken);
+
+      const { email } = await getKakaoAccount(token);
+
+      return { email, token };
+    }
+
+    throw error;
+  }
+}
+
+export function setHeaderToken(token: KakaoToken) {
+  if (token.accessToken == null) {
+    return [
+      "Set-Cookie",
+      [
+        `refreshToken=${token.refreshToken}; path=/; httpOnly; SameSite=Strict; Max-Age=31536000; secure`,
+      ],
+    ] as const;
+  }
+
+  return [
+    "Set-Cookie",
+    [
+      `accessToken=${token.accessToken}; path=/; httpOnly; SameSite=Strict; Max-Age=31536000; secure`,
+      `refreshToken=${token.refreshToken}; path=/; httpOnly; SameSite=Strict; Max-Age=31536000; secure`,
+    ],
+  ] as const;
 }

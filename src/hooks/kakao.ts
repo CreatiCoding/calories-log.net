@@ -31,7 +31,7 @@ export function useKakao() {
         router.reload();
       } catch (error: any) {
         console.log(error.message);
-        console.log(error.response.data);
+        console.log(error?.response?.data);
       }
     },
     async () => {
@@ -54,7 +54,7 @@ export function useKakao() {
         router.reload();
       } catch (error: any) {
         console.log(error.message);
-        console.log(error.response.data);
+        console.log(error?.response?.data);
       }
     },
     () => {
