@@ -67,6 +67,7 @@ export function useKakao() {
       window.Kakao.Auth.authorize({
         redirectUri: `${process.env.NEXT_PUBLIC_HOSTNAME}/kakao/login`,
         scope: "account_email",
+        throughTalk: false,
       });
     },
 
