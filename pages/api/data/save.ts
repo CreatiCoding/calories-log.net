@@ -35,7 +35,10 @@ export default async function handler(
 
     return res.status(200).json({ status: "ok" });
   } catch (e: any) {
-    if (e.response.data.error_code === "KOE403") {
+    if (
+      e.response.data.error_code === "KOE403" ||
+      e.response.data.msg === "this access token does not exist"
+    ) {
       return res.status(403).json({
         status: "error",
         redirect: "/",
