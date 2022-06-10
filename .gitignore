@@ -192,6 +192,7 @@ calories-log.net.tar.gz
 
 sw.js
 sw.js.map
+worker-*.js
 workbox-*.js
 workbox-*.js.map
 fallback-*.js
