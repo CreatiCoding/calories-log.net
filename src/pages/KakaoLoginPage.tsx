@@ -1,4 +1,3 @@
-import * as localStorage from "local-storage";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { loginKakao } from "../services/user";
@@ -20,9 +19,11 @@ export default function KakaoLoginPage() {
     }
 
     (async () => {
-      const { email } = await loginKakao({ code });
-
-      localStorage.set("kakao-email", email);
+      const { data } = await loginKakao({ code });
+      if (data.email != null) {
+        router.push(`/?email=${data.email}`);
+        return;
+      }
 
       router.push("/");
     })();

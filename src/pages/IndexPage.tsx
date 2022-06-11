@@ -1,41 +1,65 @@
 import Page from "@divops/component-page";
 import { css } from "@emotion/react";
-import * as localStorage from "local-storage";
 import Header from "next/head";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Calendar } from "../components/calendar";
 import { Dashboard } from "../components/Dashboard";
-import { HambergerMenu } from "../components/HambergerMenu";
+// import { HambergerMenu } from "../components/HambergerMenu";
 import { MM } from "../computed/date";
-import { useCalories } from "../hooks/calories";
+import {
+  useCalories,
+  CaloriesError,
+  CaloriesResponse,
+} from "../hooks/calories";
 import { useDialog } from "../hooks/dialog";
-import { useKakao } from "../hooks/kakao";
 import { pageStyle } from "../styles/page";
 
 export default function IndexPage() {
   const [now, setNow] = useState<Date | null>(null);
-  const [calories, { add, remove, reset }] = useCalories();
+  const calories = useCalories();
   const [accSum, setAccSum] = useState(0);
   const [accLength, setAccLength] = useState(0);
   const [monthlySum, setMonthlySum] = useState(0);
   const [monthlyLength, setMonthlyLength] = useState(0);
   const [Dialog, open] = useDialog();
-  const [MenuDialog, openMenu] = useDialog();
-  const [save, load, login, logout] = useKakao();
+  // const [MenuDialog, openMenu] = useDialog();
+  const router = useRouter();
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    setAccSum(Object.values(calories).reduce((acc, cur) => acc + cur, 0));
-    setAccLength(Object.values(calories).filter((e) => e !== 0).length);
+    if (router.isReady) {
+      const { email } = router.query;
+      if (email != null) {
+        if (typeof email === "string") {
+          setEmail(email);
+        }
+      }
+    }
+  }, [router]);
+
+  useEffect(() => {
+    if (calories.isLoading) {
+      return;
+    }
+
+    if ((calories as unknown as CaloriesError).error != null) {
+      return;
+    }
+
+    const { data } = calories as CaloriesResponse;
+
+    setAccSum(Object.values(data).reduce((acc, cur) => acc + cur, 0));
+    setAccLength(Object.values(data).filter((e) => e !== 0).length);
 
     if (now != null) {
       setMonthlySum(
-        Object.entries(calories)
+        Object.entries(data)
           .filter(([e]) => e.split("-")[1] === MM(now.getMonth() + 1))
           .reduce((acc, [, cur]) => acc + cur, 0)
       );
       setMonthlyLength(
-        Object.entries(calories)
+        Object.entries(data)
           .filter(([e]) => e.split("-")[1] === MM(now.getMonth() + 1))
           .filter(([, e]) => e !== 0).length
       );
@@ -44,10 +68,6 @@ export default function IndexPage() {
 
   useEffect(() => {
     setNow(new Date());
-  }, []);
-
-  useEffect(() => {
-    setEmail(localStorage.get("kakao-email"));
   }, []);
 
   if (now == null) {
@@ -68,24 +88,12 @@ export default function IndexPage() {
       `}
       header={Header}
     >
-      <MenuDialog
-        keywords={["백업하기", "복원하기", "초기화하기", "로그인", "로그아웃"]}
-        onClick={async (keyword: string) => {
+      {/* <MenuDialog
+        keywords={[`안녕하세요\n${email?.split("@")[0]}님`]}
+        onClick={(keyword: string) => {
           switch (keyword) {
-            case "백업하기": {
-              return await save();
-            }
-            case "복원하기": {
-              return await load();
-            }
-            case "초기화하기": {
-              return reset();
-            }
-            case "로그인": {
-              return login();
-            }
-            case "로그아웃": {
-              return await logout();
+            case `안녕하세요\n${email?.split("@")[0]}님`: {
+              return;
             }
           }
         }}
@@ -100,7 +108,7 @@ export default function IndexPage() {
           transform: translate(-15px, 17px);
         `}
         onClick={() => openMenu()}
-      ></HambergerMenu>
+      /> */}
       <Dashboard
         css={css`
           padding: 0 20px;
@@ -139,9 +147,15 @@ export default function IndexPage() {
           month: now.getMonth() + 1,
           date: now.getDate(),
         }}
-        values={Object.entries(calories)
-          .filter((x) => x[1] !== 0)
-          .reduce((a, x) => ({ ...a, [x[0]]: `${x[1]}` }), {})}
+        values={
+          calories.isLoading
+            ? {}
+            : (calories as CaloriesResponse)?.data == null
+            ? {}
+            : Object.entries((calories as CaloriesResponse)?.data)
+                .filter((x) => x[1] !== 0)
+                .reduce((a, x) => ({ ...a, [x[0]]: `${x[1]}` }), {})
+        }
         onClickDate={({ year, month, date }) => {
           open(year, month, date);
         }}
@@ -151,18 +165,28 @@ export default function IndexPage() {
       >
         <Dialog
           keywords={["칼로리 추가", "기록 제거"]}
-          onClick={(keyword: string, [year, month, date]: any[]) => {
+          onClick={async (keyword: string, [year, month, date]: any[]) => {
+            if (calories.isLoading) {
+              alert("아직 준비되지 않았습니다.");
+              return;
+            }
+            if ((calories as CaloriesError).error != null) {
+              return;
+            }
+
+            const { add, remove } = calories as CaloriesResponse;
+
             switch (keyword) {
               case "칼로리 추가": {
                 const calory = prompt(`추가할 칼로리를 입력하세요.`);
 
                 if (calory) {
-                  add(`${year}-${MM(month)}-${date}`, Number(calory));
+                  await add(`${year}-${MM(month)}-${date}`, Number(calory));
                 }
                 return;
               }
               case "기록 제거": {
-                remove(`${year}-${MM(month)}-${date}`);
+                await remove(`${year}-${MM(month)}-${date}`);
               }
             }
           }}
