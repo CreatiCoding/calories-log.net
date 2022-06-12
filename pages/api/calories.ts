@@ -60,6 +60,7 @@ export default async function handler(
   } catch (e: any) {
     if (
       e.message === "로그인을 먼저 해주세요" ||
+      e.response?.data?.error_code === "KOE322" ||
       e.response?.data?.error_code === "KOE403" ||
       e.response?.data?.msg === "this access token does not exist"
     ) {
