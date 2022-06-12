@@ -25,7 +25,7 @@ export default async function handler(
       .setHeader(setHeaderToken(token)[0], setHeaderToken(token)[1])
       .json({ status: "ok", email });
   } catch (e: any) {
-    if (e.response.data.error_code === "KOE320") {
+    if (e.response?.data?.error_code === "KOE320") {
       return res.status(200).json({ status: "ok" });
     }
 
