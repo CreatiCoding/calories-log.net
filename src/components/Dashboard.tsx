@@ -1,8 +1,12 @@
 import { Label } from "./Label";
 
+interface Label {
+  value: string | number;
+  useLoading?: boolean;
+}
 interface DashboardProps {
   className?: string;
-  labels: Array<string | number>;
+  labels: Label[];
 }
 
 export function Dashboard({ className, labels }: DashboardProps) {
@@ -16,7 +20,8 @@ export function Dashboard({ className, labels }: DashboardProps) {
         return (
           <Label
             key={`${index}-${label}`}
-            value={label}
+            value={label.value}
+            loading={label.useLoading}
             bold
             red={scale}
             size={scale ? "big" : mod5 ? "small" : undefined}

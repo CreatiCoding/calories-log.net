@@ -17,10 +17,11 @@ interface CalendarProps {
   values: Record<string, string>;
   onClickDate: (date: CalendarDate) => void;
   onChangeCurrent: (current: CalendarDate, next: CalendarDate) => void;
+  loading?: boolean;
 }
 
 export function Calendar(props: CalendarProps) {
-  const { current, values, children } = props;
+  const { current, values, children, loading = false } = props;
   const { year, month } = current;
   const date = getDateLengthOfMonth(year, month);
   const list = getOneMonthDays(date);
@@ -82,6 +83,70 @@ export function Calendar(props: CalendarProps) {
                 border-radius: 8px;
                 color: black;
                 overflow: hidden;
+
+                ${day > 0 && loading
+                  ? css`
+                      background-color: "#cecece";
+                      color: rgba(0, 0, 0, 0);
+                      border: unset;
+                      background: linear-gradient(
+                        ${300 + i * 1.5}deg,
+                        #c8c8c8,
+                        #f0f0f0
+                      );
+                      background-size: 400% 400%;
+
+                      -webkit-animation: AnimationName 1s ease infinite;
+                      -moz-animation: AnimationName 1s ease infinite;
+                      -o-animation: AnimationName 1s ease infinite;
+                      animation: AnimationName 1s ease infinite;
+
+                      @-webkit-keyframes AnimationName {
+                        0% {
+                          background-position: 43% 0%;
+                        }
+                        50% {
+                          background-position: 58% 100%;
+                        }
+                        100% {
+                          background-position: 43% 0%;
+                        }
+                      }
+                      @-moz-keyframes AnimationName {
+                        0% {
+                          background-position: 43% 0%;
+                        }
+                        50% {
+                          background-position: 58% 100%;
+                        }
+                        100% {
+                          background-position: 43% 0%;
+                        }
+                      }
+                      @-o-keyframes AnimationName {
+                        0% {
+                          background-position: 43% 0%;
+                        }
+                        50% {
+                          background-position: 58% 100%;
+                        }
+                        100% {
+                          background-position: 43% 0%;
+                        }
+                      }
+                      @keyframes AnimationName {
+                        0% {
+                          background-position: 43% 0%;
+                        }
+                        50% {
+                          background-position: 58% 100%;
+                        }
+                        100% {
+                          background-position: 43% 0%;
+                        }
+                      }
+                    `
+                  : css``}
               `}
               onClick={
                 day <= 0

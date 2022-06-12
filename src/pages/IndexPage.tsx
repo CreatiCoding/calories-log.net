@@ -121,18 +121,26 @@ export default function IndexPage() {
           margin-top: 10px;
         `}
         labels={[
-          "누적",
-          "total",
-          accSum,
-          "avg",
-          isNaN(accSum / accLength) ? 0 : (accSum / accLength).toFixed(2),
-          "이번달",
-          "total",
-          monthlySum,
-          "avg",
-          isNaN(monthlySum / monthlyLength)
-            ? 0
-            : (monthlySum / monthlyLength).toFixed(2),
+          { value: "누적" },
+          { value: "total" },
+          { value: accSum, useLoading: calories.isLoading },
+          { value: "avg" },
+          {
+            value: isNaN(accSum / accLength)
+              ? 0
+              : (accSum / accLength).toFixed(2),
+            useLoading: calories.isLoading,
+          },
+          { value: "이번달" },
+          { value: "total" },
+          { value: monthlySum, useLoading: calories.isLoading },
+          { value: "avg" },
+          {
+            value: isNaN(monthlySum / monthlyLength)
+              ? 0
+              : (monthlySum / monthlyLength).toFixed(2),
+            useLoading: calories.isLoading,
+          },
         ]}
       />
       <Calendar
@@ -141,6 +149,7 @@ export default function IndexPage() {
           month: now.getMonth() + 1,
           date: now.getDate(),
         }}
+        loading={calories.isLoading}
         mode={"monthly"}
         today={{
           year: now.getFullYear(),
