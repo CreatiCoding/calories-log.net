@@ -62,7 +62,8 @@ export default async function handler(
       e.message === "로그인을 먼저 해주세요" ||
       e.response?.data?.error_code === "KOE322" ||
       e.response?.data?.error_code === "KOE403" ||
-      e.response?.data?.msg === "this access token does not exist"
+      e.response?.data?.msg === "this access token does not exist" ||
+      e.response?.data?.msg === "this access token is already expired"
     ) {
       return res.status(403).json({
         status: "error",
