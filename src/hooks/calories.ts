@@ -46,8 +46,12 @@ export function useCalories():
       if (error?.["message"] != null) {
         const { message, redirect } = JSON.parse(error.message);
 
-        console.log(message);
+        if (redirect == null) {
+          alert(message);
+          return { isLoading, error };
+        }
 
+        console.log(message);
         router.push(redirect);
 
         return { isLoading, error };
