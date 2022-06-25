@@ -5,6 +5,22 @@ import {
 } from "../../../src/api/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+function getBaseURL(hostname?: string) {
+  if (typeof hostname === "undefined") {
+    return "https://calories-log.net";
+  }
+
+  if (hostname === "https://life.creco.me") {
+    return "https://life.creco.me/calories";
+  }
+
+  if (hostname === "https://calories-log.net") {
+    return "https://calories-log.net";
+  }
+
+  return "http://localhost:3000";
+}
+
 type ResponseData = {
   status: "ok" | "error";
   email?: string;
@@ -17,10 +33,7 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   try {
-    const hostname =
-      `${req.headers.origin}/calories` ??
-      process.env.NEXT_PUBLIC_HOSTNAME ??
-      "https://calories-log.net";
+    const hostname = getBaseURL(req.headers.origin);
 
     const token = await getTokenFromKakao(hostname, req.body.code);
 
