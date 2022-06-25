@@ -6,6 +6,22 @@ declare global {
   }
 }
 
+function getBaseURL() {
+  if (typeof window === "undefined") {
+    return "https://calories-log.net";
+  }
+
+  if (window.location.hostname === "life.creco.me") {
+    return "https://life.creco.me/calories";
+  }
+
+  if (window.location.hostname === "calories-log.net") {
+    return "https://calories-log.net";
+  }
+
+  return "http://localhost:3000";
+}
+
 export function useKakao() {
   return [
     () => {
@@ -15,15 +31,10 @@ export function useKakao() {
         }
       }
 
-      const hostname =
-        `https://${window.location.hostname}/calories` ??
-        process.env.NEXT_PUBLIC_HOSTNAME ??
-        "https://calories-log.net";
-
-      console.log({ hostname });
+      console.log({ hostname: getBaseURL() });
 
       window.Kakao.Auth.authorize({
-        redirectUri: `${hostname}/kakao/login`,
+        redirectUri: `${getBaseURL()}/kakao/login`,
         scope: "account_email",
         throughTalk: false,
       });
