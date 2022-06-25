@@ -64,6 +64,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-loader", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:8.2.5"],\
             ["body-parser", "npm:1.20.0"],\
             ["crypto", "npm:1.0.1"],\
+            ["dotenv", "npm:16.0.1"],\
             ["eslint", "npm:8.16.0"],\
             ["eslint-config-next", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:12.1.6"],\
             ["eslint-plugin-import", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:2.26.0"],\
@@ -5862,6 +5863,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-loader", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:8.2.5"],\
             ["body-parser", "npm:1.20.0"],\
             ["crypto", "npm:1.0.1"],\
+            ["dotenv", "npm:16.0.1"],\
             ["eslint", "npm:8.16.0"],\
             ["eslint-config-next", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:12.1.6"],\
             ["eslint-plugin-import", "virtual:f4d531d38efbf893d3804d945f4facffc646b706ef0b09f302df5d23c44dd696527add65c4d8a17a47fbfff45dbdc6421a5f3a38f3f76afe3dc8687cc8f9d97b#npm:2.26.0"],\
@@ -6534,6 +6536,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["dot-prop", "npm:5.3.0"],\
             ["is-obj", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dotenv", [\
+        ["npm:16.0.1", {\
+          "packageLocation": "./.yarn/cache/dotenv-npm-16.0.1-d99e72bb95-f459ffce07.zip/node_modules/dotenv/",\
+          "packageDependencies": [\
+            ["dotenv", "npm:16.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
+require("dotenv").config();
 
 module.exports = withPWA({
   pwa: {
@@ -25,4 +26,8 @@ module.exports = withPWA({
       },
     ];
   },
+  assetPrefix:
+    process.env.ENV === "local"
+      ? "http://localhost:3000"
+      : "https://calories-log.net",
 });
