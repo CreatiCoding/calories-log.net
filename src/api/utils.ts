@@ -140,17 +140,14 @@ export function getTokenFromCookie(cookie?: string): KakaoToken | null {
   return { accessToken, refreshToken };
 }
 
-export async function getTokenFromKakao(code: string): Promise<KakaoToken> {
-  const redirectUri = `${process.env.NEXT_PUBLIC_HOSTNAME}/kakao/login`;
+// 여기 수정해야함
+export async function getTokenFromKakao(
+  host: string,
+  code: string
+): Promise<KakaoToken> {
+  const redirectUri = `${host}/kakao/login`;
 
   return await getKakaoToken({ code, redirectUri });
-}
-
-export async function getToken(req: NextApiRequest) {
-  return (
-    getTokenFromCookie(req.headers.cookie) ??
-    (await getTokenFromKakao(req.body.code))
-  );
 }
 
 export async function renewalAccessToken(refreshToken: string) {

@@ -17,13 +17,17 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   try {
-    const token = await getTokenFromKakao(req.body.code);
+    const hostname =
+      req.headers.host ??
+      process.env.NEXT_PUBLIC_HOSTNAME ??
+      "https://calories-log.net";
+    const token = await getTokenFromKakao(hostname, req.body.code);
 
     const { email } = await getKakaoAccount(token);
     return res
       .status(200)
       .setHeader(setHeaderToken(token)[0], setHeaderToken(token)[1])
-      .json({ status: "ok", email });
+      .json({ status: "ok", email, data: { hostname } });
   } catch (e: any) {
     if (e.response?.data?.error_code === "KOE320") {
       return res.status(200).json({ status: "ok" });

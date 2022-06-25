@@ -15,8 +15,15 @@ export function useKakao() {
         }
       }
 
+      const hostname =
+        window.location.hostname ??
+        process.env.NEXT_PUBLIC_HOSTNAME ??
+        "https://calories-log.net";
+
+      console.log({ hostname });
+
       window.Kakao.Auth.authorize({
-        redirectUri: `${process.env.NEXT_PUBLIC_HOSTNAME}/kakao/login`,
+        redirectUri: `${hostname}/kakao/login`,
         scope: "account_email",
         throughTalk: false,
       });
