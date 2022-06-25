@@ -18,9 +18,10 @@ export default async function handler(
 ) {
   try {
     const hostname =
-      req.headers.host ??
+      `https://${req.headers.host}` ??
       process.env.NEXT_PUBLIC_HOSTNAME ??
       "https://calories-log.net";
+
     const token = await getTokenFromKakao(hostname, req.body.code);
 
     const { email } = await getKakaoAccount(token);
