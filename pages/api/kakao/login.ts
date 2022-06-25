@@ -34,6 +34,11 @@ export default async function handler(
       return res.status(200).json({ status: "ok" });
     }
 
+    e.response.data.host =
+      `https://${req.headers.host}/calories` ??
+      process.env.NEXT_PUBLIC_HOSTNAME ??
+      "https://calories-log.net";
+
     return res.status(500).json({
       status: "error",
       message: e.message,
