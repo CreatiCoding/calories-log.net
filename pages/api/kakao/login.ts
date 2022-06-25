@@ -18,7 +18,7 @@ export default async function handler(
 ) {
   try {
     const hostname =
-      `https://${req.headers.origin}/calories` ??
+      `${req.headers.origin}/calories` ??
       process.env.NEXT_PUBLIC_HOSTNAME ??
       "https://calories-log.net";
 
@@ -35,7 +35,7 @@ export default async function handler(
     }
 
     e.response.data.host =
-      `https://${req.headers.origin}/calories` ??
+      `${req.headers.origin}/calories` ??
       process.env.NEXT_PUBLIC_HOSTNAME ??
       "https://calories-log.net";
 
