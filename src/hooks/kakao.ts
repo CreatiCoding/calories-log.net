@@ -16,7 +16,7 @@ export function useKakao() {
       }
 
       const hostname =
-        `https://${window.location.hostname}` ??
+        `https://${window.location.hostname}/calories` ??
         process.env.NEXT_PUBLIC_HOSTNAME ??
         "https://calories-log.net";
 

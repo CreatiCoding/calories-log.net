@@ -18,7 +18,7 @@ export default async function handler(
 ) {
   try {
     const hostname =
-      `https://${req.headers.host}` ??
+      `https://${req.headers.host}/calories` ??
       process.env.NEXT_PUBLIC_HOSTNAME ??
       "https://calories-log.net";
 
